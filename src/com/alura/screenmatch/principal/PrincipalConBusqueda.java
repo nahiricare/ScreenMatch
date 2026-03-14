@@ -1,5 +1,6 @@
 package com.alura.screenmatch.principal;
 
+import com.alura.screenmatch.modelos.Titulo;
 import com.alura.screenmatch.modelos.TituloOmdb;
 import com.google.gson.Gson;
 
@@ -16,22 +17,39 @@ public class PrincipalConBusqueda {
         System.out.println("Escriba el nombre de una película: ");
         var busqueda = lectura.nextLine();
 
-        String direccion = "http://www.omdbapi.com/?t="+busqueda+"&apikey=e77580d8";
+        //Try.catch
+        try {
+            // 1. Preparar la búsqueda (Recuerda el .replace para los espacios)
+            var busquedaFormateada = busqueda.replace(" ", "+");
+            String direccion = "http://www.omdbapi.com/?t=" + busquedaFormateada + "&apikey=e77580d8";
 
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(direccion))
-                .build();
+            // 2. Hacer la petición a la API
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create(direccion)).build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        HttpResponse<String> response = client
-                .send(request, HttpResponse.BodyHandlers.ofString());
+            // 3. Convertir el JSON a nuestro Record
+            String json = response.body();
+            Gson gson = new Gson();
+            TituloOmdb miTituloOmdb = gson.fromJson(json, TituloOmdb.class);
 
-//        System.out.println(response.body());
+            // 4. Usar el constructor que creamos en Titulo
+            Titulo miTitulo = new Titulo(miTituloOmdb);
+            System.out.println("Título convertido: " + miTitulo);
 
-        Gson gson = new Gson();
-
-        TituloOmdb miTituloOmdb = gson.fromJson(response.body(), TituloOmdb.class);
-
-        System.out.println(miTituloOmdb);
+        } catch (NumberFormatException e) {
+            System.out.println("Error: No se pudo convertir un dato numérico.");
+            System.out.println("Detalle: " + e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: La dirección de búsqueda es inválida.");
+        } catch (com.alura.screenmatch.excepcion.ErrorEnConversionDeDuracionException e) {
+            System.out.println("Error específico: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Ocurrió un error inesperado: " + e.getMessage());
+        } finally {
+            // Esto se ejecuta SIEMPRE (opcional)
+            System.out.println("Finalizó la ejecución de la búsqueda.");
+        }
     }
+
 }
