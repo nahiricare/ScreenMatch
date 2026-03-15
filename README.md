@@ -1,71 +1,64 @@
-ScreenMatch
+🎬 ScreenMatch - Buscador de Películas
+ScreenMatch es una aplicación robusta desarrollada en Java que permite buscar información de películas y series en tiempo real, gestionar colecciones personalizadas y almacenar los resultados de forma permanente en archivos JSON.
 
-ScreenMatch es una aplicación en Java creada durante mi formación en backend, basada en dos cursos donde practiqué conceptos fundamentales de listas y programación orientada a objetos.
+Este proyecto forma parte de mi especialización en Backend con Java, integrando conceptos avanzados de programación orientada a objetos, consumo de APIs y manejo de archivos.
 
-🎯 Objetivo del proyecto
+🚀 Funcionalidades Principales
+Consumo de API Real: Conexión con la API de OMDb para obtener datos actualizados de títulos.
 
-El objetivo de este proyecto es modelar películas y series, gestionarlas en listas y aplicar principios de orientación a objetos (clases, herencia, polimorfismo e interfaces) para practicar buenas prácticas de Java.
+Buscador Interactivo: Bucle de búsqueda dinámico que permite al usuario realizar múltiples consultas hasta decidir salir.
 
-🚀 Tecnologías y herramientas
+Manejo de Errores Profesional: Implementación de bloques try-catch y Excepciones Personalizadas para gestionar errores de conversión y datos nulos (ej. duraciones "N/A").
 
-Lenguaje: Java
+Persistencia de Datos: Exportación automática de la lista de búsquedas a un archivo físico peliculas.json utilizando la librería GSON.
 
-Paradigma: Programación Orientada a Objetos (POO)
+Serialización Refinada: Uso de anotaciones @Expose para generar archivos JSON limpios, guardando solo la información relevante (Nombre, Año, Duración).
 
-Colecciones: ArrayList y manipulación de listas de objetos
+🛠️ Tecnologías y Herramientas
+Lenguaje: Java 25 (LTS)
 
-📚 Contenidos practicados
+Librerías Externas: GSON (para manipulación de JSON).
 
-1. Listas y colecciones en Java
-Este proyecto nació a partir de un curso enfocado en listas y colecciones, donde practiqué:
+API: OMDb API.
 
-Representar una lista de objetos en Java.
+Herramientas: HTTP Client para peticiones asíncronas, Java IO para escritura de archivos.
 
-Comprender cómo funciona la clase ArrayList.
+📚 Conceptos Técnicos Aplicados
+1. Programación Orientada a Objetos
+Herencia y Polimorfismo: Estructura de clases para Películas y Series.
 
-Agregar, buscar, recorrer y eliminar elementos de una lista.
+Records: Uso de TituloOmdb para un mapeo eficiente de los datos de la API (DTO - Data Transfer Object).
 
-Ordenar listas según distintos criterios (por ejemplo, título o duración).
+Interfaces: Implementación de Comparable para ordenar listas alfabéticamente.
 
-Realizar casting de objetos y verificación de tipo con instanceof.
+2. Manejo de Excepciones
+Creación de excepciones personalizadas para validar reglas de negocio.
 
-2. Programación Orientada a Objetos
-También se basa en un curso de POO con Java, donde trabajé:
+Uso de throws y delegación de errores hacia la JVM cuando es necesario.
 
-Modelar abstracciones a través de clases, atributos y métodos.
+3. Persistencia y JSON
+Configuración de GsonBuilder con políticas de nombres (FieldNamingPolicy.UPPER_CAMEL_CASE).
 
-Usar herencia como mecanismo de reutilización de código (por ejemplo, una clase base para títulos y clases hijas para películas o series).
+Implementación de Serialización selectiva para optimizar el tamaño de los archivos.
 
-Aplicar polimorfismo para hacer el código más flexible al trabajar con tipos genéricos.
-
-Definir e implementar interfaces para estandarizar comportamientos comunes.
-
-🧩 Estructura del proyecto
-La lógica principal del proyecto se encuentra en el paquete src, donde se definen las clases que representan los distintos tipos de títulos y las clases con métodos main para probar las funcionalidades.
-
-Ejemplos de elementos que podés encontrar (o agregar):
-
-Clases para representar películas y series.
-
-Métodos para calcular duración total de visualización.
-
-Clases o métodos para probar listas, ordenamientos y filtros.
-
-▶️ Cómo ejecutar
+▶️ Cómo ejecutar el proyecto
 Clonar el repositorio:
 
-bash
+Bash
 git clone https://github.com/nahiricare/ScreenMatch.git
-Abrir el proyecto en tu IDE favorito (por ejemplo, IntelliJ IDEA).
+Importar el proyecto en IntelliJ IDEA (o tu IDE preferido).
 
-Compilar el proyecto y ejecutar la clase que contenga el método main que quieras probar.
-​
+Asegurarte de tener configurada la librería GSON en las dependencias del proyecto.
+
+Ejecutar la clase PrincipalConBusqueda.
+
+Ingresa los nombres de tus películas favoritas y, al finalizar, escribe "salir" para generar tu archivo JSON.
 
 🧠 Próximos pasos
-Algunas ideas para seguir mejorando el proyecto:
+[ ] Deserialización: Implementar la lectura del archivo JSON al iniciar la aplicación.
 
-Integrar una API externa para buscar películas y series.
-​
-Crear un menú interactivo en consola para que el usuario gestione la lista.
-​
-Agregar tests automatizados para las clases principales.
+[ ] Interfaz Gráfica: Evolucionar la consola a una interfaz visual básica.
+
+[ ] Filtros Avanzados: Clasificar títulos por género o calificación directamente desde la lista guardada.
+
+Proyecto desarrollado por Nahir Jasmin Icare en el marco del programa Oracle Next Education (ONE).
