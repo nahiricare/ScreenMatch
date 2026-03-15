@@ -28,7 +28,8 @@ public class PrincipalConBusqueda {
                 //Esta línea funciona como "Traductor oficial" entre la API y el mundo java
                 //Sin esta línea, Gson a veces no encuentra los datos y te deja los campos en null porque no reconoce que "Title" es lo mismo que tu campo title.
                 .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
-                .setPrettyPrinting() // Esto hace que el JSON se vea lindo al imprimir
+                .setPrettyPrinting()// Esto hace que el JSON se vea lindo al imprimir
+                .excludeFieldsWithoutExposeAnnotation()
                 .create();
 
         while (true) {
@@ -64,7 +65,7 @@ public class PrincipalConBusqueda {
             } catch (com.alura.screenmatch.excepcion.ErrorEnConversionDeDuracionException e) {
                 System.out.println(e.getMessage());
             } catch (Exception e) {
-                System.out.println("Ocurrió un error inesperado.");
+                System.out.println("Ocurrió un error inesperado. " + e.getMessage()); //Para mostrar más info del error
             }
         }
 

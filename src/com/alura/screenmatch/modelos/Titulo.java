@@ -1,13 +1,17 @@
 package com.alura.screenmatch.modelos;
 
 import com.alura.screenmatch.excepcion.ErrorEnConversionDeDuracionException;
+import com.google.gson.annotations.Expose;
 
 public class Titulo implements Comparable<Titulo>{
+    @Expose //Etiqueta para mostrar datos en el JSON
     private String nombre;
+    @Expose //Etiqueta para mostrar datos en el JSON
     private int fechaDeLanzamiento;
     private boolean incluidoEnElPlan;
     private double sumaDeLasEvaluaciones;
     private int totalDeEvaluaciones;
+    @Expose //Etiqueta para mostrar datos en el JSON
     private int duracionEnMinutos;
 
     public Titulo(String nombre, int fechaDeLanzamiento) {

@@ -1,4 +1,10 @@
 package com.alura.screenmatch.modelos;
+import com.google.gson.annotations.Expose;
 
-public record TituloOmdb(String Title, String Year, String Runtime) {
+
+public record TituloOmdb(
+        @Expose String Title,
+        @Expose String Year,
+        @Expose String Runtime
+) {
 }

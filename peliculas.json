@@ -2,25 +2,26 @@
   {
     "Nombre": "Matrix",
     "FechaDeLanzamiento": 1993,
-    "IncluidoEnElPlan": false,
-    "SumaDeLasEvaluaciones": 0.0,
-    "TotalDeEvaluaciones": 0,
     "DuracionEnMinutos": 60
   },
   {
     "Nombre": "Lilo \u0026 Stitch",
     "FechaDeLanzamiento": 2002,
-    "IncluidoEnElPlan": false,
-    "SumaDeLasEvaluaciones": 0.0,
-    "TotalDeEvaluaciones": 0,
     "DuracionEnMinutos": 85
   },
   {
-    "Nombre": "Encantada",
-    "FechaDeLanzamiento": 2008,
-    "IncluidoEnElPlan": false,
-    "SumaDeLasEvaluaciones": 0.0,
-    "TotalDeEvaluaciones": 0,
-    "DuracionEnMinutos": 13
+    "Nombre": "Mafalda",
+    "FechaDeLanzamiento": 1982,
+    "DuracionEnMinutos": 82
+  },
+  {
+    "Nombre": "Matilda",
+    "FechaDeLanzamiento": 1996,
+    "DuracionEnMinutos": 98
+  },
+  {
+    "Nombre": "Star Wars: Episode IV - A New Hope",
+    "FechaDeLanzamiento": 1977,
+    "DuracionEnMinutos": 121
   }
 ]
