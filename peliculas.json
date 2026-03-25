@@ -5,23 +5,18 @@
     "DuracionEnMinutos": 60
   },
   {
-    "Nombre": "Lilo \u0026 Stitch",
-    "FechaDeLanzamiento": 2002,
-    "DuracionEnMinutos": 85
+    "Nombre": "Conversations with a Killer: The Ted Bundy Tapes",
+    "FechaDeLanzamiento": 2019,
+    "DuracionEnMinutos": 236
   },
   {
-    "Nombre": "Mafalda",
-    "FechaDeLanzamiento": 1982,
-    "DuracionEnMinutos": 82
+    "Nombre": "Ring",
+    "FechaDeLanzamiento": 1995,
+    "DuracionEnMinutos": 95
   },
   {
-    "Nombre": "Matilda",
-    "FechaDeLanzamiento": 1996,
-    "DuracionEnMinutos": 98
-  },
-  {
-    "Nombre": "Star Wars: Episode IV - A New Hope",
-    "FechaDeLanzamiento": 1977,
-    "DuracionEnMinutos": 121
+    "Nombre": "Ratatouille",
+    "FechaDeLanzamiento": 2007,
+    "DuracionEnMinutos": 111
   }
 ]

@@ -16,14 +16,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.google.gson.reflect.TypeToken;
+import java.io.FileReader;
+import java.lang.reflect.Type;
+import java.io.File;
+
 public class PrincipalConBusqueda {
-    // La sentencia throws IOException es "Mira, este método usa archivos o internet, y eso puede fallar. Si falla, simplemente detén todo y muestra el error".
-    //"Este método es peligroso y no voy a solucionar todos sus problemas aquí adentro". por lo que la JVM llamada por el main toma el problema, detiene el programa y muestra mensaje en rojo de la consola.-
+    // La sentencia throws IOException es "Mira, este metodo usa archivos o internet, y eso puede fallar. Si falla, simplemente detén todo y muestra el error".
+    //"Este metodo es peligroso y no voy a solucionar todos sus problemas aquí adentro". por lo que la JVM llamada por el main toma el problema, detiene el programa y muestra mensaje en rojo de la consola.-
 
     public static void main(String[] args) throws IOException, InterruptedException {
+
         Scanner lectura = new Scanner(System.in);
         // Creamos la lista fuera del bucle para que no se borre en cada vuelta
         List<Titulo> titulos = new ArrayList<>();
+        // 1. Definimos la ruta del archivo
+        File archivo = new File("peliculas.json");
+
         Gson gson = new GsonBuilder()
                 //Esta línea funciona como "Traductor oficial" entre la API y el mundo java
                 //Sin esta línea, Gson a veces no encuentra los datos y te deja los campos en null porque no reconoce que "Title" es lo mismo que tu campo title.
@@ -31,6 +40,28 @@ public class PrincipalConBusqueda {
                 .setPrettyPrinting()// Esto hace que el JSON se vea lindo al imprimir
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
+
+
+
+        // 2. Verificamos si el archivo existe antes de intentar leerlo
+        if (archivo.exists()) {
+            try (FileReader lector = new FileReader(archivo)) {
+                // 3. Usamos TypeToken para decirle a Gson que lea una LISTA de objetos Titulo
+                Type tipoLista = new TypeToken<ArrayList<Titulo>>(){}.getType();
+
+                // Cargamos los datos existentes en nuestra lista
+                List<Titulo> listaCargada = gson.fromJson(lector, tipoLista);
+
+                if (listaCargada != null) {
+                    titulos.addAll(listaCargada);
+                    System.out.println("Se cargaron " + titulos.size() + " películas de la sesión anterior.");
+                }
+            } catch (IOException e) {
+                System.out.println("Error al leer el archivo: " + e.getMessage());
+            }
+        } else {
+            System.out.println("No se encontró historial de búsquedas. Iniciando lista nueva.");
+        }
 
         while (true) {
             System.out.println("Escriba el nombre de una película (o 'salir' para finalizar): ");
@@ -73,9 +104,9 @@ public class PrincipalConBusqueda {
 // AQUÍ es donde ocurre la persistencia (fuera del while)
         System.out.println("Lista de películas recolectadas: " + titulos);
 
-        FileWriter escritura = new FileWriter("peliculas.json");
-        escritura.write(gson.toJson(titulos));
-        escritura.close();
+        try (FileWriter escritura = new FileWriter("peliculas.json")) {
+            escritura.write(gson.toJson(titulos));
+        }
 
         System.out.println("Programa finalizado. ¡Archivo guardado con éxito!");
     }
